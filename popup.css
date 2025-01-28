@@ -1,0 +1,208 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} 
+
+.containerAberto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.649);
+    transition: background-color 0.5s ease; 
+}
+
+.containerFechado {
+    position: relative;
+    z-index: 9999;
+    height: 99vh;
+    display: flex;
+    align-items: end;
+    transition: background-color 0.5s ease; 
+}
+
+.circule {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid black;
+    margin-left: 1rem;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.love-video-circule {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.story {
+    width: 400px;
+    height: 700px;
+    display: none;
+    position: relative;
+    z-index: 10;
+    border-radius: 8px;
+}
+
+.love-video-story {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 9;
+    border-radius: 8px;
+}
+
+.containerClose {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-top: 1rem;
+    z-index: 12;
+    position: relative;
+    padding: .5rem;
+}
+
+.buttonsStory {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    gap: 3rem;
+    position: relative;
+    z-index: 12;
+    padding: .5rem;
+}
+
+.cardInformation {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: .5rem;
+    position: relative;
+    z-index: 13;
+    border-radius: 8px;
+    padding: .5rem;
+    margin: 0 2rem 0 2rem;
+    height: 100px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.3); /* Fundo semitransparente */
+    backdrop-filter: blur(5px); /* Aplica o desfoque no fundo */
+}
+
+.aloneButton {
+    border: none;
+    background-color: transparent;
+}
+
+.aloneButton i {
+    font-size: 22px;
+    color: white;
+}
+
+.iconClose {
+    margin-bottom: 7rem;
+}
+
+.progress-bar-container {
+    margin-top: 1rem;
+    margin-right: 20px; 
+    margin-left: 20px;
+    position: relative;
+    z-index: 12;
+    display: flex;
+    gap: 5px;
+}
+
+.progress-bar {
+    height: 2px; /* Altura de cada barra */
+    width: 100%; /* Preenche a largura total */
+    background-color: rgba(255, 255, 255, 0.3); /* Fundo semitransparente */
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    margin: 2px 0; /* Espaçamento entre as barras */
+}
+
+.progress-bar-fill {
+    height: 100%; /* Preenche toda a altura da barra */
+    width: 0%; /* Inicialmente vazia */
+    background-color: white; /* Cor da barra ativa */
+    transition: width 0.1s linear; /* Animação suave ao preencher */
+    border-radius: 12px;
+}
+
+
+.containerCircule {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.textInfo {
+    background-color: black;
+    color: #fff;
+    padding: .7rem;
+    padding-left: 1rem;
+    border-radius: 0 20px 20px 0;
+    position: relative;
+    z-index: 1;
+    right: 10px;
+    font-size: 0;
+    width: 0;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+@keyframes expandWidth {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 200px; 
+        font-size: 18px;
+    }
+}
+
+@keyframes diminuiWidth {
+    0% {
+        width: 200px; 
+        font-size: 18px;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+.expandWith {
+    animation: expandWidth 1s ease-in forwards;
+}
+
+.animationDiminuiWidth {
+    animation: diminuiWidth 1s ease-out forwards;
+}
+
+@media screen and (max-width: 1024px) {
+    .story {
+        width: 300px;
+        height: 600px;
+    }
+
+    .circule {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cardInformation {
+        height: 90px;
+    }
+}
