@@ -9,26 +9,29 @@
     <script src="./popup.js" defer></script>
 </head>
 <body>
-    <section class="containerFechado" id="container">
-        <div class="containerCircule">
-            <div class="circule" id="circule">
-                <video autoplay class="love-video-circule" src="https://lp.lovechocolate.com.br/wp-content/uploads/2025/01/isDog.mp4" loop muted></video>
+    <section class="pop--container--closed" id="popContainerGlobal">
+        <div class="popContainerCircle">
+            <div class="popCircle" id="popCircle">
+                <video autoplay loop muted class="popVideoCircle" src="https://lp.lovechocolate.com.br/wp-content/uploads/2025/01/isDog.mp4"></video>
             </div>
-            <p class="textInfo expandWith" id="textInfo">texto para ficar legal!</p>
+            <p class="pop--expand--text popTextCircle" id="popTextCircle">texto para ficar legal!</p>
         </div>
-        <div class="story" id="story">
-            <video autoplay class="love-video-story" id="src-video" playsinline muted></video>
-            <div class="progress-bar-container"></div>
-            <div class="containerClose">
-                <button class="aloneButton" id="close"><i class="bi bi-x-square-fill"></i></button>
+        <div class="popStory" id="popStory">
+            <video autoplay playsinline muted class="popVideoStorie" id="popVideoStorie" ></video>
+            <div class="popStoryBarContainer"></div>
+            <div class="popButtonClosedContainer">
+                <button class="popButtonClass" id="popButtonClosed">
+                    <i class="bi bi-x-square-fill"></i>
+                </button>
             </div>
-            <div class="buttonsStory">
-                <button class="aloneButton" id="like"><i class="bi bi-heart-fill" id="icon-like"></i></button>
-                <button class="aloneButton"><i class="bi bi-rulers"></i></button>
-                <button class="aloneButton"><i class="bi bi-cart-plus-fill"></i></button>
-                <button class="aloneButton"><i class="bi bi-send-fill"></i></button>
+            <!--Parei aqui -->
+            <div class="popButtonsContainer">
+                <button class="popButtonClass" id="popButtonLike"><i class="bi bi-heart-fill" id="icon-like"></i></button>
+                <button class="popButtonClass"><i class="bi bi-rulers"></i></button>
+                <button class="popButtonClass"><i class="bi bi-cart-plus-fill"></i></button>
+                <button class="popButtonClass"><i class="bi bi-send-fill"></i></button>
             </div>
-            <div class="cardInformation">
+            <div class="popCardInformation">
                 <img src="https://placehold.co/80x80" alt="product">
                 <p>Texto infotmativo muito bom!</p>
             </div>

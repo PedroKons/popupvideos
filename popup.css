@@ -1,28 +1,30 @@
 * {
-    padding: 0;
+    padding-left: 0;
     margin: 0;
     box-sizing: border-box;
-} 
+}
 
-.containerAberto {
+.pop--container--open {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     background-color: rgba(0, 0, 0, 0.649);
     transition: background-color 0.5s ease; 
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    height: 100vh;
 }
-
-.containerFechado {
+    
+.pop--container--closed {
     position: relative;
     z-index: 9999;
-    height: 99vh;
     display: flex;
     align-items: end;
     transition: background-color 0.5s ease; 
 }
 
-.circule {
+.popCircle {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -33,15 +35,18 @@
     overflow: hidden;
 }
 
-.love-video-circule {
+.popVideoCircle {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid #fff;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.story {
+.popStory {
     width: 400px;
     height: 700px;
     display: none;
@@ -50,7 +55,7 @@
     border-radius: 8px;
 }
 
-.love-video-story {
+.popVideoStorie{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -59,7 +64,7 @@
     border-radius: 8px;
 }
 
-.containerClose {
+.popButtonClosedContainer {
     width: 100%;
     height: 10%;
     display: flex;
@@ -71,7 +76,7 @@
     padding: .5rem;
 }
 
-.buttonsStory {
+.popButtonsContainer {
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -83,7 +88,7 @@
     padding: .5rem;
 }
 
-.cardInformation {
+.popCardInformation {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -95,35 +100,36 @@
     margin: 0 2rem 0 2rem;
     height: 100px;
     color: white;
+    font-size: 12px !important;
     background-color: rgba(255, 255, 255, 0.3); /* Fundo semitransparente */
     backdrop-filter: blur(5px); /* Aplica o desfoque no fundo */
 }
 
-.aloneButton {
+.popButtonClass {
     border: none;
     background-color: transparent;
 }
 
-.aloneButton i {
+.popButtonClass i {
     font-size: 22px;
     color: white;
 }
 
 .iconClose {
-    margin-bottom: 7rem;
+    margin-bottom: 7rem; /*Dar uma olhada depois*/ 
 }
 
-.progress-bar-container {
+.popStoryBarContainer {
     margin-top: 1rem;
-    margin-right: 20px; 
-    margin-left: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
     position: relative;
     z-index: 12;
     display: flex;
     gap: 5px;
 }
 
-.progress-bar {
+.pop--story--bar {
     height: 2px; /* Altura de cada barra */
     width: 100%; /* Preenche a largura total */
     background-color: rgba(255, 255, 255, 0.3); /* Fundo semitransparente */
@@ -133,7 +139,7 @@
     margin: 2px 0; /* Espaçamento entre as barras */
 }
 
-.progress-bar-fill {
+.pop--story--bar--fill {
     height: 100%; /* Preenche toda a altura da barra */
     width: 0%; /* Inicialmente vazia */
     background-color: white; /* Cor da barra ativa */
@@ -142,13 +148,14 @@
 }
 
 
-.containerCircule {
+.popContainerCircle {
     display: flex;
     align-items: center;
     position: relative;
+    margin-bottom: 1rem;
 }
 
-.textInfo {
+.popTextCircle {
     background-color: black;
     color: #fff;
     padding: .7rem;
@@ -163,19 +170,19 @@
     font-weight: 700;
 }
 
-@keyframes expandWidth {
+@keyframes pop--expand--text {
     0% {
         width: 0;
     }
     100% {
-        width: 200px; 
+        width: 220px; 
         font-size: 18px;
     }
 }
 
-@keyframes diminuiWidth {
+@keyframes pop--retract--text {
     0% {
-        width: 200px; 
+        width: 220px; 
         font-size: 18px;
     }
     100% {
@@ -183,26 +190,32 @@
     }
 }
 
-.expandWith {
-    animation: expandWidth 1s ease-in forwards;
+.pop--expand--text {
+    animation: pop--expand--text 1s ease-in forwards;
 }
 
-.animationDiminuiWidth {
-    animation: diminuiWidth 1s ease-out forwards;
+.pop--retract--text {
+    animation: pop--retract--text 1s ease-out forwards;
 }
 
 @media screen and (max-width: 1024px) {
-    .story {
+    .popStory {
         width: 300px;
         height: 600px;
     }
 
-    .circule {
+    .popCircle {
         width: 80px;
         height: 80px;
     }
 
-    .cardInformation {
+    .popCardInformation {
         height: 90px;
     }
+}
+
+#popContainerGlobal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
