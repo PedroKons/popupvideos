@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+#popContainerGlobal {
+    position: fixed;
+}
+
 .pop--container--open {
     display: flex;
     align-items: center;
@@ -24,18 +28,17 @@
     transition: background-color 0.5s ease; 
 }
 
-.popCircle {
+eatables-video-commerce .popCircle {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: 3px solid black;
-    margin-left: 1rem;
+    border: 3px solid;
     position: relative;
     z-index: 2;
     overflow: hidden;
 }
 
-.popVideoCircle {
+eatables-video-commerce .popVideoCircle {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -46,7 +49,7 @@
     box-sizing: border-box;
 }
 
-.popStory {
+eatables-video-commerce .popStory {
     width: 400px;
     height: 700px;
     display: none;
@@ -55,7 +58,7 @@
     border-radius: 8px;
 }
 
-.popVideoStorie{
+eatables-video-commerce .popVideoStorie{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -64,31 +67,32 @@
     border-radius: 8px;
 }
 
-.popButtonClosedContainer {
+eatables-video-commerce .popButtonClosedContainer {
     width: 100%;
     height: 10%;
     display: flex;
     align-items: center;
-    justify-content: end;
-    padding-top: 1rem;
+    justify-content: space-between;
+    flex-direction: row-reverse;
     z-index: 12;
     position: relative;
     padding: .5rem;
+    padding-top: 1rem;
 }
 
-.popButtonsContainer {
+eatables-video-commerce .popButtonsContainer {
     height: 70%;
     display: flex;
     flex-direction: column;
     align-items: end;
     justify-content: center;
-    gap: 3rem;
+    gap: 2rem;
     position: relative;
     z-index: 12;
     padding: .5rem;
 }
 
-.popCardInformation {
+eatables-video-commerce .popCardInformation {
     display: flex;
     align-items: center;
     justify-content: start;
@@ -101,25 +105,129 @@
     height: 100px;
     color: white;
     font-size: 12px !important;
-    background-color: rgba(255, 255, 255, 0.3); /* Fundo semitransparente */
-    backdrop-filter: blur(5px); /* Aplica o desfoque no fundo */
+    background-color: rgba(88, 88, 88, 0.397); /* Fundo semitransparente */
+    backdrop-filter: blur(4px); /* Aplica o desfoque no fundo */
 }
 
-.popButtonClass {
-    border: none;
-    background-color: transparent;
+eatables-video-commerce .popCardMeasures {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 13;
+    background-color: rgba(27, 27, 27, 0.637); /* Fundo semitransparente */
+    backdrop-filter: blur(4px); /* Aplica o desfoque no fundo */
+    color: white;
+    font-size: 12px !important;
+    height: 40%;
+    border-radius: 8px;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
 }
 
-.popButtonClass i {
-    font-size: 22px;
+eatables-video-commerce .popCardComments {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 13;
+    background-color: rgba(27, 27, 27, 0.637); /* Fundo semitransparente */
+    backdrop-filter: blur(4px); /* Aplica o desfoque no fundo */
+    color: white;
+    height: 60%;
+    border-radius: 8px;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+}
+
+eatables-video-commerce .pop--card--comments--open {
+    transform: translateY(0) !important;
+}
+
+eatables-video-commerce .popHeaderCardComments {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 10%;
+}
+
+eatables-video-commerce .popCardCommentsContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 50%;
+}
+
+eatables-video-commerce .popCardCommentsForms {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 1rem;
+    height: 40%;
+}
+
+eatables-video-commerce .popCardCommentsForms form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+eatables-video-commerce .popCardCommentsForms input {
+    width: 80%;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid white;
+    background-color: rgba(88, 88, 88, 0.397);
+    padding: 12px;
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     color: white;
 }
 
-.iconClose {
+eatables-video-commerce .popCardCommentsForms button {
+    width: 20%;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid white;
+    background-color: rgba(88, 88, 88, 0.397);
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+eatables-video-commerce .popTextCardComments {
+    color: white;
+    font-size: 15px !important;
+}
+
+eatables-video-commerce .popButtonClass {
+    border: none;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    background-color: rgba(88, 88, 88, 0.397);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 0;
+}
+
+eatables-video-commerce .popButtonClass svg {
+    display: block;
+}
+
+eatables-video-commerce .iconClose {
     margin-bottom: 7rem; /*Dar uma olhada depois*/ 
 }
 
-.popStoryBarContainer {
+eatables-video-commerce .popStoryBarContainer {
     margin-top: 1rem;
     padding-right: 20px;
     padding-left: 20px;
@@ -129,7 +237,7 @@
     gap: 5px;
 }
 
-.pop--story--bar {
+eatables-video-commerce .pop--story--bar {
     height: 2px; /* Altura de cada barra */
     width: 100%; /* Preenche a largura total */
     background-color: rgba(255, 255, 255, 0.3); /* Fundo semitransparente */
@@ -139,7 +247,7 @@
     margin: 2px 0; /* Espaçamento entre as barras */
 }
 
-.pop--story--bar--fill {
+eatables-video-commerce .pop--story--bar--fill {
     height: 100%; /* Preenche toda a altura da barra */
     width: 0%; /* Inicialmente vazia */
     background-color: white; /* Cor da barra ativa */
@@ -148,74 +256,124 @@
 }
 
 
-.popContainerCircle {
+eatables-video-commerce .popContainerCircle {
     display: flex;
     align-items: center;
     position: relative;
     margin-bottom: 1rem;
 }
 
-.popTextCircle {
-    background-color: black;
-    color: #fff;
-    padding: .7rem;
-    padding-left: 1rem;
-    border-radius: 0 20px 20px 0;
+eatables-video-commerce .popTextCircle {
     position: relative;
+    padding: 0.7rem;
     z-index: 1;
-    right: 10px;
-    font-size: 0;
-    width: 0;
+    font-size: 14px;
     white-space: nowrap;
     font-weight: 700;
+    opacity: 0;
 }
 
 @keyframes pop--expand--text {
     0% {
-        width: 0;
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    90% {
+        transform: translateX(0);
+        opacity: 1;
     }
     100% {
-        width: 220px; 
-        font-size: 18px;
+        transform: translateX(-50%);
+        opacity: 0;
     }
 }
 
-@keyframes pop--retract--text {
+@keyframes pop--expand--text--reverse {
     0% {
-        width: 220px; 
-        font-size: 18px;
+        transform: translateX(50%);
+        opacity: 0;
+    }
+    10% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    90% {
+        transform: translateX(0);
+        opacity: 1;
     }
     100% {
-        width: 0;
+        transform: translateX(50%);
+        opacity: 0;
     }
 }
 
-.pop--expand--text {
-    animation: pop--expand--text 1s ease-in forwards;
+eatables-video-commerce .pop--expand--text {
+    animation: pop--expand--text 6s ease-in-out forwards;
 }
 
-.pop--retract--text {
-    animation: pop--retract--text 1s ease-out forwards;
+eatables-video-commerce .pop--expand--text--reverse {
+    animation: pop--expand--text--reverse 6s ease-in-out forwards;
 }
 
 @media screen and (max-width: 1024px) {
-    .popStory {
-        width: 300px;
-        height: 600px;
+    eatables-video-commerce .popStory {
+        width: 100%;
+        height: 100vh;
     }
 
-    .popCircle {
+    eatables-video-commerce .popCircle {
         width: 80px;
         height: 80px;
     }
 
-    .popCardInformation {
+    eatables-video-commerce .popCardInformation {
         height: 90px;
     }
 }
 
-#popContainerGlobal {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+eatables-video-commerce .popHeaderCardMeasures {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+eatables-video-commerce .popTableCardMeasure {
+   width: 100%;
+}
+
+eatables-video-commerce .popThCardMeasure {
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Loading Spinner */
+eatables-video-commerce .pop--loading--spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+eatables-video-commerce .pop--spinner {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #000000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
