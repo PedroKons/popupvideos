@@ -1,4 +1,4 @@
-const urlApi = 'http://localhost:64286/api'
+const urlApi = 'https://video-commerce-app-one.vercel.app/api'
 
 class EatablesVideoCommerce extends HTMLElement {
     constructor() {
