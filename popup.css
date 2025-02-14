@@ -168,18 +168,19 @@ eatables-video-commerce .popCardCommentsForms {
     height: 40%;
 }
 
-eatables-video-commerce .popCardCommentsForms form {
+
+eatables-video-commerce .popCardCommentsForms .popFormComment {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
 
-eatables-video-commerce .popCardCommentsForms input {
+eatables-video-commerce .popCardCommentsForms .popInputComment {
     width: 80%;
     height: 50px;
     border-radius: 8px;
-    border: 1px solid white;
+    border: none;
     background-color: rgba(88, 88, 88, 0.397);
     padding: 12px;
     border-right: none;
@@ -188,11 +189,16 @@ eatables-video-commerce .popCardCommentsForms input {
     color: white;
 }
 
+eatables-video-commerce .popInputComment:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 eatables-video-commerce .popCardCommentsForms button {
     width: 20%;
     height: 50px;
     border-radius: 8px;
-    border: 1px solid white;
+    border: none;
     background-color: rgba(88, 88, 88, 0.397);
     border-left: none;
     border-top-left-radius: 0;

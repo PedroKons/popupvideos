@@ -29,23 +29,13 @@
           <p class="popTextCircle" id="popTextCircle"></p>
       </div>
       <div class="popStory" id="popStory">
-          <video autoplay playsinline muted class="popVideoStorie" id="popVideoStorie" ></video>
+          <video autoplay playsinline class="popVideoStorie" id="popVideoStorie" ></video>
           <div class="popStoryBarContainer"></div>
           <div class="popButtonClosedContainer">
               <button class="popButtonClass" id="popButtonClosed">
                 <!-- Botão de fechar -->
                 <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="22px" fill="#fff">
                   <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-                </svg>
-              </button>
-
-              <!-- Botão de volume -->
-              <button class="popButtonClass" id="popButtonVolume">
-                <svg xmlns="http://www.w3.org/2000/svg" id="bi-volume-down" width="22px" height="22px" fill="#fff" class="bi bi-volume-down" viewBox="0 0 16 16">
-                  <path d="M9 4a.5.5 0 0 0-.812-.39L5.825 5.5H3.5A.5.5 0 0 0 3 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 9 12zM6.312 6.39 8 5.04v5.92L6.312 9.61A.5.5 0 0 0 6 9.5H4v-3h2a.5.5 0 0 0 .312-.11M12.025 8a4.5 4.5 0 0 1-1.318 3.182L10 10.475A3.5 3.5 0 0 0 11.025 8 3.5 3.5 0 0 0 10 5.525l.707-.707A4.5 4.5 0 0 1 12.025 8"/>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" id="bi-volume-mute" width="22px" height="22px" fill="#fff" class="bi bi-volume-mute" viewBox="0 0 16 16" style="display: none;">
-                  <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06M6 5.04 4.312 6.39A.5.5 0 0 1 4 6.5H2v3h2a.5.5 0 0 1 .312.11L6 10.96zm7.854.606a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0"/>
                 </svg>
               </button>
           </div>
@@ -98,7 +88,7 @@
               </button>
 
               <!-- Botão de medidas -->
-              <button class="popButtonClass" id="popButtonRulers" onclick="event.preventDefault();">
+              <button class="popButtonClass" id="popButtonRulers" onclick="event.preventDefault();" style="display: none;">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 
                   width="26px" height="26px" viewBox="0 0 512.000000 512.000000"
@@ -128,7 +118,7 @@
 
               <!-- Botão de Carrinho -->
               <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-              <button class="popButtonClass" type="submit">
+              <button class="popButtonClass" type="submit" style="display: none;">
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
 
                   width="26px" height="26px" viewBox="0 0 512.000000 512.000000"
@@ -181,6 +171,16 @@
                 </g>
                 </svg>
               </button>
+
+              <!-- Botão de volume -->
+              <button class="popButtonClass" id="popButtonVolume" onclick="event.preventDefault();">
+                <svg xmlns="http://www.w3.org/2000/svg" id="bi-volume-down" width="22px" height="22px" fill="#fff" class="bi bi-volume-down" viewBox="0 0 16 16">
+                  <path d="M9 4a.5.5 0 0 0-.812-.39L5.825 5.5H3.5A.5.5 0 0 0 3 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 9 12zM6.312 6.39 8 5.04v5.92L6.312 9.61A.5.5 0 0 0 6 9.5H4v-3h2a.5.5 0 0 0 .312-.11M12.025 8a4.5 4.5 0 0 1-1.318 3.182L10 10.475A3.5 3.5 0 0 0 11.025 8 3.5 3.5 0 0 0 10 5.525l.707-.707A4.5 4.5 0 0 1 12.025 8"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" id="bi-volume-mute" width="22px" height="22px" fill="#fff" class="bi bi-volume-mute" viewBox="0 0 16 16" style="display: none;">
+                  <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06M6 5.04 4.312 6.39A.5.5 0 0 1 4 6.5H2v3h2a.5.5 0 0 1 .312.11L6 10.96zm7.854.606a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0"/>
+                </svg>
+              </button>
           </form>
 
           <!-- Card de informações -->
@@ -231,10 +231,10 @@
               <p class="popTextCardComments">Seja o primeiro a comentar</p>
             </div>
             <div class="popCardCommentsForms">
-              <form>
-                <input type="text" placeholder="Digite seu comentario" id="popInputComment">
-                <button type="submit">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-arrow-up" viewBox="0 0 16 16">
+              <form class="popFormComment">
+                <input type="text" placeholder="Digite seu comentario" id="popInputComment" class="popInputComment">
+                <button type="submit" id="popButtonSendComment">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" id="popSvgSendComment" class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
                   </svg>
                 </button>

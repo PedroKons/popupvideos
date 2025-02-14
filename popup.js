@@ -144,6 +144,41 @@ async function sendComment(sessionId, videoId, comment) {
     }
 }
 
+async function events(sessionId, videoId, event) {
+    console.log({sessionId, videoId, event})
+    try {
+        const response = await fetch(`${urlApi}/analytics`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'aplication/json',
+                'X-Pathname': window.location.pathname,
+                'X-Session-Id': sessionId || ''
+            },
+            body: JSON.stringify({
+                shop: 'loja-de-teste-eatables.myshopify.com',
+                videoId: videoId,
+                event: event
+            })
+        })
+        if(!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const newSessionId = response.headers.get("x-session-id");
+        if (newSessionId) {
+            setCookie("_eatables_session_id", newSessionId);
+        }
+
+        const data = await response.json();
+        console.log('Resposta da API:', data);
+        return data;
+
+    } catch (error) {
+        console.error('Erro ao enviar video view:', error);
+        return null;
+    } 
+}
+
 function handleTextAnimation(storyData) {
     const textInfo = document.getElementById("popTextCircle");
     textInfo.textContent = storyData.modalConfig.modalText
@@ -157,7 +192,16 @@ function handleTextAnimation(storyData) {
     }
 }
 
-function toShere() {
+function toShere(videoId) {
+    let sessionId;
+    const existingCookie = getCookie("_eatables_session_id");
+    if (existingCookie) {
+        sessionId = existingCookie.valor;
+    }
+
+    const event = "share"
+    events(sessionId, videoId, event)
+
     if (navigator.share) {
         navigator.share({
             title: document.title,
@@ -226,9 +270,8 @@ function toggleVolume() {
 }
 
 function setupEventListeners(storyData) {
-    document.getElementById("popCircle").addEventListener("click", (event) => {
-        const isliked = event.currentTarget.getAttribute('data-isliked');
-        openPopup(storyData, isliked);
+    document.getElementById("popCircle").addEventListener("click", () => {
+        openPopup(storyData);
     });
 
     document.getElementById("popButtonLike").addEventListener("click", (event) => {
@@ -240,12 +283,22 @@ function setupEventListeners(storyData) {
 
     document.getElementById("popButtonClosed").addEventListener("click", (event) => {
         event.stopPropagation(); // Evita que o clique passe para o popStory
-        closePopup();
+        const videoId = event.currentTarget.getAttribute('closed-data-video-id');
+        closePopup(videoId);
+    });
+
+    // Fecha o popup ao pressionar a tecla Esc
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") { // Verifica se a tecla pressionada é "Esc"
+            const videoId = event.currentTarget.getAttribute('closed-data-video-id');
+            closePopup(videoId);
+        }
     });
 
     document.getElementById("popButtonShere").addEventListener("click", (event) => {
         event.stopPropagation(); // Evita que o clique passe para o popStory
-        toShere();
+        const videoId = event.currentTarget.getAttribute('shere-data-video-id');
+        toShere(videoId);
     });
 
     document.getElementById("popButtonRulers").addEventListener("click", (event) => {
@@ -279,6 +332,7 @@ function setupEventListeners(storyData) {
         
         const commentInput = document.getElementById("popInputComment");
         const comment = commentInput.value;
+        const popSvgSendComment = document.getElementById("popSvgSendComment");
         
         // Obter o ID do vídeo atual
         const videoId = document.getElementById("popButtonLike").getAttribute('data-video-id');
@@ -294,6 +348,12 @@ function setupEventListeners(storyData) {
         
         if (result) {
             // Limpar o input após envio bem-sucedido
+            popSvgSendComment.style.fill = "#0fb800";
+
+            // Voltar para a cor branca após 2 segundos
+            setTimeout(() => {
+                popSvgSendComment.style.fill = "#fff";
+            }, 2000);
             commentInput.value = '';
             // Aqui você pode adicionar código para atualizar a UI com o novo comentário
         }
@@ -336,7 +396,14 @@ async function toggleLikeButton(isliked, videoId) {
     }
 }
 
-function closePopup() {
+function closePopup(videoId) {
+    let sessionId;
+    const existingCookie = getCookie("_eatables_session_id");
+    if (existingCookie) {
+        sessionId = existingCookie.valor;
+    }
+    const event = "video_closed"
+    events(sessionId, videoId, event)
     const container = document.getElementById('popContainerGlobal');
     const story = document.getElementById("popStory");
     const circule = document.getElementById("popCircle");
@@ -350,6 +417,14 @@ function closePopup() {
 }
 
 function openPopup(storyData) {
+    let sessionId;
+        const existingCookie = getCookie("_eatables_session_id");
+        if (existingCookie) {
+            sessionId = existingCookie.valor;
+        }
+    const event = "video_view"
+    const videoId = storyData.videos[0].video.id
+    events(sessionId, videoId, event)
     const container = document.getElementById('popContainerGlobal');
     const story = document.getElementById("popStory");
     const circule = document.getElementById("popCircle");
@@ -394,18 +469,22 @@ function initializeVideoPlayer(storyData) {
     const videoPlayer = document.getElementById('popVideoStorie');
     const progressContainer = document.querySelector(".popStoryBarContainer");
     progressContainer.innerHTML = "";
-    
+
     let currentVideoIndex = 0;
     const progressBars = createProgressBars(videos, progressContainer);
-    
+
     const updateLikeButtonVideoId = () => {
         const likeButton = document.getElementById("popButtonLike");
         const buttonLike = document.getElementById("icon-like");
         const buttonLikeRed = document.getElementById("icon-like-red");
+        const popButtonShere = document.getElementById("popButtonShere")
+        const popButtonClosed = document.getElementById("popButtonClosed")
         
         likeButton.setAttribute('data-video-id', videoIds[currentVideoIndex]);
         likeButton.setAttribute('data-isliked', isliked[currentVideoIndex]);
-        
+        popButtonShere.setAttribute('shere-data-video-id', videoIds[currentVideoIndex])
+        popButtonClosed.setAttribute('closed-data-video-id', videoIds[currentVideoIndex])
+
         // Atualiza o estado visual do botão de like
         if (isliked[currentVideoIndex]) {
             buttonLike.style.display = "none";
@@ -443,6 +522,17 @@ function initializeVideoPlayer(storyData) {
         if (progressBars[currentVideoIndex]) {
             progressBars[currentVideoIndex].style.width = `${percentage}%`;
         }
+        if (percentage >= 98 && !videoPlayer.dataset.log98) {
+            videoPlayer.dataset.log98 = "true";
+            let sessionId;
+            const existingCookie = getCookie("_eatables_session_id");
+            if (existingCookie) {
+                sessionId = existingCookie.valor;
+            }
+            const event = "video_completed"
+            const videoId = videoIds[currentVideoIndex]
+            events(sessionId, videoId, event)
+        }
     }
     
     function handleVideoEnded() {
@@ -472,9 +562,6 @@ function initializeVideoPlayer(storyData) {
     });
     
     loadNextVideo();
-
-    console.log('storyData recebido:', storyData);
-    console.log('URLs dos vídeos:', videos);
 }
 
 function createProgressBars(videos, container) {
