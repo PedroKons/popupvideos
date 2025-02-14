@@ -417,14 +417,6 @@ function closePopup(videoId) {
 }
 
 function openPopup(storyData) {
-    let sessionId;
-        const existingCookie = getCookie("_eatables_session_id");
-        if (existingCookie) {
-            sessionId = existingCookie.valor;
-        }
-    const event = "video_view"
-    const videoId = storyData.videos[0].video.id
-    events(sessionId, videoId, event)
     const container = document.getElementById('popContainerGlobal');
     const story = document.getElementById("popStory");
     const circule = document.getElementById("popCircle");
@@ -499,6 +491,16 @@ function initializeVideoPlayer(storyData) {
         if (currentVideoIndex < videos.length) {
             videoPlayer.src = videos[currentVideoIndex];
             videoPlayer.load();
+            
+            let sessionId;
+            const existingCookie = getCookie("_eatables_session_id");
+            if (existingCookie) {
+                sessionId = existingCookie.valor;
+            }
+            const event = "video_view"
+            const videoId = videos[currentVideoIndex];
+            events(sessionId, videoId, event);
+
             updateLikeButtonVideoId();
             
             videoPlayer.removeEventListener("timeupdate", handleTimeUpdate);
